@@ -1,0 +1,6 @@
+*.npz
+assets/text/*.txt
+.idea/
+__pycache__/
+*.pt
+*.pth
