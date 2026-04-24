@@ -86,8 +86,6 @@ if os.path.exists(checkpoint_path):
     train_losses = checkpoint["train_losses"]
     start_micro_step = checkpoint.get("micro_step", 0)
     min_loss = checkpoint.get("min_loss", float("inf"))
-    min_loss = 8.3
-    start_micro_step = 8000
     print(f"从epoch:{start_epoch}|micro_step:{start_micro_step}继续训练|最优Loss:{min_loss:.4f}")
 
 """

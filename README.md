@@ -20,26 +20,38 @@
 - [ ] TinyStories数据集训练与loss曲线分析
 - [ ] 注意力热力图分析与稀疏性验证、量化
 - [ ] KV Cache推理加速基准测试
+- [ ] SwiGLU
 - [ ] FoPE与RoPE长文本外推对比实验
 - [ ] DPO（直接偏好优化）与SAE（稀疏自编码器）扩展
+- [ ] MoE
 - [ ] 完整的Encoder-Decoder翻译任务
 ---
 
 ## 实验结果
 
-![注意力热力图](assets/pictures/attn_map1.png)
+|           注意力热力图（Layer0 Head2）           |           注意力热力图（Layer4 Head5）           |
+|:----------------------------------------:|:----------------------------------------:|
+| ![注意力热力图](assets/pictures/attn_map1.png) | ![注意力热力图](assets/pictures/attn_map2.png) 
+|      注意力分布呈现稀疏模式，初步验证了模型对关键位置的聚焦能力       |           模型低层注意力头捕捉局部上下文关联，高层则建模全局序列依赖                        |
 
->注意力分布呈现稀疏模式，初步验证了模型对关键位置的聚焦能力
 
+|                    局部损失曲线                     |                  全局损失曲线                   |
+|:---------------------------------------------:|:-----------------------------------------:|
+| ![局部损失曲线](assets/pictures/tiny_test_rope.png) | ![全局损失曲线](assets/pictures/loss_curve.png) | 
+|          训练中的局部损失下降趋势（TinyStories子集）          |         训练中的全局损失下降趋势（TinyStories）         |
 
+|            KV Cache开启/关闭速度验证             |
+|:----------------------------------------:|
+| ![KV Cache](assets/pictures/KVCache.png) | 
+|      开启 KV Cache 后，模型推理速度从 104 tokens/s 提升至 176 tokens/s，实现了约1.7 倍的加速       |         
 
-![损失曲线](assets/pictures/tiny_test_rope.png)
->训练中的损失下降趋势（TinyStories 子集）
 ---
 ## 生成示例
-输入 prompt: `Once upon a time`
-模型输出: `once upon a time , he was very old , but he had found a time , and his friends was so happy . He said , " What are you , so he just ?" Jack was so happy . He asked his mom , " I ' m sorry to be too !" From that he looked at the old man . He had all all the boat was so happy ! He said , " That ' s a little boy ! I ' m very good ." The frog said he found a big forest and said ,
+> 输入 prompt: `Once upon a time`
+
+> 模型输出: `once upon a time , there was a girl named Lily . She loved to play with her friends , and her friends was very kind . One day , she found a big house on the park . She wanted to take her new toys to the park . But she took her home , a while she decided to be more careful . She wanted to help . She thought it was too beautiful , but she knew that her mom loved to do . Her mommy told her that she was so happy . She said she could help her mom
 `
+
 >模型在未经过完整训练的情况下已能生成有一定连贯性的文本，展示了基本的语言建模能力。
 ## 😊 联系我
 - QQ邮箱：515191716@qq.com

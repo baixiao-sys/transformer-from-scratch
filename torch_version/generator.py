@@ -17,8 +17,8 @@ def generate_text(model, prompt,tokenizer, device,temperature=0.8,top_k=50,top_p
                 """
                 热力图
                 """
-                if step == 90:
-                    plot_attention_map(attn_maps, tokens, 0, 2)
+                #if step == 90:
+                    #plot_attention_map(attn_maps, tokens, 0, 2)
             else:
                 logits,_ = model(input_ids)
             logits = logits[:, -1, :]/temperature#温度缩放
@@ -65,8 +65,8 @@ def generate_text_with_kv(model, prompt,tokenizer, device,temperature=0.8,top_k=
                 """
                 热力图
                 """
-                if step == 90:
-                    plot_attention_map(attn_maps, tokens, 3, 0)
+                #if step == 90:
+                    #plot_attention_map(attn_maps, tokens, 3, 0)
             else:
                 logits,kv_caches = model(input_ids[:,-1:],kv_caches=kv_caches)
             logits = logits[:, -1, :]/temperature#温度缩放
