@@ -17,8 +17,8 @@ top_p = 0.9
 #load_path = "../numpy_version/model.npz"
 file_path = "1.txt"
 #save_path = "best_model.pth"
-save_weight_path = "TinyStories_model.pth"
-load_weight_path = "TinyStories_model.pth"
+save_weight_path = "weights/TinyStories_model.pth"
+load_weight_path = "weights/TinyStories_model.pth"
 
 return_attn = True
 
@@ -36,16 +36,16 @@ vocab_size = tokenizer.get_vocab_size()
 log_interval = 10  #每10个batch打印一次
 loss_curve_save_path = "loss_curve.png"
 
-BPE_save_path = "BPE_text.json"
-BPE_load_path = "BPE_text.json"
+BPE_save_path = "prepare/BPE_text.json"
+BPE_load_path = "prepare/BPE_text.json"
 
-save_vocab_path = "char_vocab.json"
-load_vocab_path = "char_vocab.json"
+save_vocab_path = "prepare/char_vocab.json"
+load_vocab_path = "prepare/char_vocab.json"
 
 num_fope = 0#为0时自动关掉FoPE
 
-rope_model_weight_path = "rope_model_weight.pth"
-fope_model_weight_path = "fope_model_weight.pth"
+rope_model_weight_path = "weights/rope_model_weight.pth"
+fope_model_weight_path = "weights/fope_model_weight.pth"
 
 check_step = 10
 

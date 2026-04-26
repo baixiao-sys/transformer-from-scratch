@@ -11,14 +11,15 @@ def plot_attention_map(attn_weights, tokens, layer_idx=0, head_idx=0, save_path=
     """
     # 取 batch=0，指定层和头的注意力
     #print("attn_weights shape:", attn_weights.shape)
-    attn = attn_weights[layer_idx][0, head_idx].cpu().numpy()
+    seq_len = len(tokens)
+    attn = attn_weights[layer_idx][ 0, head_idx, :seq_len, :seq_len].cpu().numpy()
 
     plt.figure(figsize=(10, 10))
     plt.imshow(attn, cmap='viridis', vmin=0, vmax=1)
 
     # 加上 token 标签
-    plt.xticks(np.arange(len(tokens)), tokens, rotation=90, fontsize=8)
-    plt.yticks(np.arange(len(tokens)), tokens, fontsize=8)
+    plt.xticks(np.arange(seq_len), tokens, rotation=90, fontsize=8)
+    plt.yticks(np.arange(seq_len), tokens, fontsize=8)
 
     plt.title(f"Attention Map | Layer {layer_idx} | Head {head_idx}")
     plt.colorbar()

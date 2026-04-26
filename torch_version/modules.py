@@ -127,8 +127,10 @@ class MultiHeadAttention(nn.Module):
         #kv缓存
         if kv_cache is not None:
             prev_k, prev_v = kv_cache
+
             k = torch.cat([prev_k, k], dim=2) #seq_len
             v = torch.cat([prev_v, v], dim=2)
+
         new_kv_cache = (k, v)
 
         """
@@ -188,9 +190,16 @@ class Transformer_Block_PreLN(nn.Module):
         if return_attn:
             attn_out,attn_weight,kv_cache = self.attn(self.norm1(input), self.norm1(input), self.norm1(input), mask,return_attn,kv_cache)
             input = self.dropout(attn_out) + input
-            input = input + self.dropout(self.ffn(self.norm2(input)))
+
+            self.ffn_out = self.ffn(self.norm2(input))
+
+            input = input + self.dropout(self.ffn_out)
             return input,attn_weight,kv_cache
+
         attn_out,kv_cache = self.attn(self.norm1(input), self.norm1(input), self.norm1(input), mask,kv_cache)
         input = input + self.dropout(attn_out)
-        input = input + self.dropout(self.ffn(self.norm2(input)))
+
+        self.ffn_out = self.ffn(self.norm2(input))
+
+        input = input + self.dropout(self.ffn_out)
         return input,kv_cache

@@ -30,10 +30,11 @@ min_loss = float("inf")
 #tokenizer = CharTokenizer()
 tokenizer = BPE()
 #tokenizer.train_save("../assets/text/TinyStories-train.txt")
-tokenizer.load("BPE_text.json")
+tokenizer.load("torch_version/prepare/BPE_text.json")
 print("BPE已加载")
 
 """
+#字符级
 #input_ids,target_ids = load_text_data(file_path,tokenizer,max_len)
 input_ids,target_ids = load_text_data("../assets/text/TinyStories-train.txt",tokenizer,max_len)
 input_ids = input_ids.to(device)
@@ -71,7 +72,8 @@ os.makedirs(checkpoint_dir, exist_ok=True)
 #选择续训模型
 #model_name = "rope"
 #model_name = "fope"
-model_name = "tiny_stories_rope"
+#model_name = "tiny_stories_rope"
+model_name = "tiny_stories_fope"
 
 start_epoch = 0
 start_micro_step = 0
@@ -91,7 +93,7 @@ if os.path.exists(checkpoint_path):
 """
 学习率预热
 """
-with open("total_steps_cache.json", "r") as f:
+with open("prepare/total_steps_cache.json", "r") as f:
     total_steps = json.load(f)["total_samples"]
     print("total_step已加载")
 

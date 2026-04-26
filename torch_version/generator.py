@@ -6,8 +6,11 @@ from DataVisualization.attn_map import plot_attention_map
 
 def generate_text(model, prompt,tokenizer, device,temperature=0.8,top_k=50,top_p = 0.9, max_new_tokens=100):
     model.eval()
-    input_ids = tokenizer.encode(prompt)
-    input_ids = torch.tensor([input_ids], dtype=torch.long).to(device)
+    input_ids_list = tokenizer.encode(prompt)
+    input_ids = torch.tensor([input_ids_list], dtype=torch.long).to(device)
+
+    tokens_list = tokenizer.decode(input_ids_list).split()
+    print(tokens_list[0])
 
     tokens = list(prompt)
     with torch.no_grad():
@@ -17,8 +20,8 @@ def generate_text(model, prompt,tokenizer, device,temperature=0.8,top_k=50,top_p
                 """
                 热力图
                 """
-                #if step == 90:
-                    #plot_attention_map(attn_maps, tokens, 0, 2)
+                if step == 50:
+                    plot_attention_map(attn_maps, tokens_list, 4, 5)
             else:
                 logits,_ = model(input_ids)
             logits = logits[:, -1, :]/temperature#温度缩放
@@ -44,7 +47,7 @@ def generate_text(model, prompt,tokenizer, device,temperature=0.8,top_k=50,top_p
             input_ids = torch.cat((input_ids, next_token), dim=1)
 
             #新token加入tokens列表
-            tokens.append(tokenizer.decode(next_token.item()))
+            tokens_list.append(tokenizer.decode(next_token.item()))
 
 
     output_tokens = input_ids[0].tolist()
