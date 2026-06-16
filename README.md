@@ -50,15 +50,12 @@
 ## 生成示例
 > 输入 prompt: `Once upon a time`
 
-> 模型输出: `once upon a time , there was a girl named Lily . She loved to play with her friends , and her friends was very kind . One day , she found a big house on the park . She wanted to take her new toys to the park . But she took her home , a while she decided to be more careful . She wanted to help . She thought it was too beautiful , but she knew that her mom loved to do . Her mommy told her that she was so happy . She said she could help her mom
+> 模型输出: `Once upon a time , there was a little girl named Lily . She loved to play with her toys and make her friend . One day , she went to the park with her mommy . Lily was so excited and she had to play with her toys . Lily was so excited that she had to find her friends , but she didn ' t know what to do . Her mom said , " I ' m sorry , Lily . I ' m sorry ." Lily was sad and said , " Can I go to the park ?"
 `
 
->模型在未经过完整训练的情况下已能生成有一定连贯性的文本，展示了基本的语言建模能力。
+>模型在经过完整训练的情况下能生成有一定连贯性的文本，展示了基本的语言建模能力。
 ## 😊 联系我
 - QQ邮箱：515191716@qq.com
 - Gmail：bai845014@gmail.com
-- 小红书:https://www.xiaohongshu.com/user/profile/68871296000000001e008a71
-
-我是一名大一学生，正在寻找NLP/LLM方向的远程助研机会，每周可投入 15-20 小时（学期中），寒暑假可全职。欢迎联系！
 
 欢迎指正错误与指导！
